@@ -1,0 +1,31 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container{
+    width: 30%;
+    height: 25vh;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(5,1fr);
+}
+
+button{
+    padding: 20px;
+    margin: 5px;
+    border-radius: 5px;
+}
+.value{
+    width: 340px;
+    height: 70px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: right;
+}
+.current{
+    margin: 40px 20px 0 0 ;
+    color: rgba(0, 0, 0, .7);
+}
