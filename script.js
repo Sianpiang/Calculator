@@ -1,5 +1,7 @@
 const numBtns = document.querySelectorAll(".btn_num");
-const display = document.querySelector(".current")
+const display = document.querySelector(".currentone");
+let shouldRestScreen = false;
+
 function add(a,b){
     return a+b;
 }
@@ -26,13 +28,18 @@ function operate(op,a,b){
     else{
         return divide(a,b);
     }
-
 }
-let value = "";
-display.textContent = value;
-numBtns.forEach(btn => {
-    btn.addEventListener('click',()=>{
-        value = btn.value;
-        display.textContent += value; 
-    })
-});
+
+numBtns.forEach((btn)=>{
+    btn.addEventListener('click',()=>appendNumber(btn.value));    
+})
+
+function appendNumber(number){
+    if(display.textContent === '0' || shouldRestScreen)clear();
+    display.textContent += number;
+}
+
+function clear(){
+    display.textContent = '';
+    shouldRestScreen = false;
+}

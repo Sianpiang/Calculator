@@ -6,7 +6,7 @@ body{
     flex-direction: column;
 }
 .container{
-    width: 30%;
+    width: 20%;
     height: 25vh;
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -19,13 +19,13 @@ button{
     border-radius: 5px;
 }
 .value{
-    width: 340px;
+    width: 360px;
     height: 70px;
     border: 2px solid black;
     border-radius: 5px;
     text-align: right;
 }
-.current{
+.currentone{
     margin: 40px 20px 0 0 ;
     color: rgba(0, 0, 0, .7);
 }
