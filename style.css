@@ -1,31 +1,54 @@
-body{
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
-.container{
-    width: 20%;
-    height: 25vh;
+
+.display{
+    width: 100%;
+    height: 30%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    align-items: flex-end;
+}
+.display div{
+    margin: 20px;
+}
+.display .previousScreen{
+    font-size: 30px;
+}
+.display .currentScreen{
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+
+.calculator{
+    width: 500px;
+    height: 700px;
+}
+
+.buttons{
+    width: 100%;
+    height: 70%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(5,1fr);
 }
-
 button{
-    padding: 20px;
-    margin: 5px;
-    border-radius: 5px;
+    font-size: 30px;
 }
-.value{
-    width: 360px;
-    height: 70px;
-    border: 2px solid black;
-    border-radius: 5px;
-    text-align: right;
-}
-.currentone{
-    margin: 40px 20px 0 0 ;
-    color: rgba(0, 0, 0, .7);
+
+.spantwo{
+    grid-column: span 2;
 }

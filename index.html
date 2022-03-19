@@ -5,31 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Calcualator</title>
+    <title>Calculator</title>
 </head>
 <body>
-    <div class="display">
-        <div class="value">
-            <p class="currentone" >0</p>
+    <div class="container">
+        <div class="calculator">
+            <div class="display">
+                <div class="previousScreen"></div>
+                <div class="currentScreen">0</div>
+            </div>
+            <div class="buttons">
+                <button class="btn_clear spantwo">c</button>
+                <button class="btn_erase">&#8592</button>
+                <button class="btn_op" value="/">/</button>
+                <button class="btn_num" value="7">7</button>
+                <button class="btn_num" value="8">8</button>
+                <button class="btn_num" value="9">9</button>
+                <button class="btn_op" value="*">*</button>
+                <button class="btn_num" value="4">4</button>
+                <button class="btn_num" value="5">5</button>
+                <button class="btn_num" value="6">6</button>
+                <button class="btn_op" value="-">-</button>
+                <button class="btn_num" value="1">1</button>
+                <button class="btn_num" value="2">2</button>
+                <button class="btn_num" value="3">3</button>
+                <button class="btn_point" value=".">.</button>
+                <button class="btn_num" value="0">0</button>
+                <button class="spantwo" id="btn_equal">=</button>
+                <button class="btn_op" value="+">+</button>
+            </div>
         </div>
-    </div>
-    <div class="container"> 
-        <button class="btn_clear" >clear</button>
-        <button class="btn_num" value="0">0</button> 
-        <button class="btn_num" value="1">1</button> 
-        <button class="btn_num" value="2">2</button> 
-        <button class="btn_num" value="3">3</button> 
-        <button class="btn_num" value="4">4</button> 
-        <button class="btn_num" value="5">5</button> 
-        <button class="btn_num" value="6">6</button>
-        <button class="btn_num" value="7">7</button> 
-        <button class="btn_num" value="8">8</button> 
-        <button class="btn_num" value="9">9</button>  
-        <button class="btn_op" value="+">+</button>
-        <button class="btn_op" value="-">-</button>
-        <button class="btn_op" value="*">*</button>
-        <button class="btn_op" value="/">/</button>
-        <button class="btn_op" >=</button>
     </div>
     <script src="script.js"></script>
 </body>
