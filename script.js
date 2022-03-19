@@ -1,111 +1,109 @@
-let firstOparend = "";
-let secondOparend = "";
-let currentOperation = null;
-let shouldResetScreen = false;
+let firstOperand = '';
+let secondOPerand = '';
+let Operation = null;
+let resetScreen = false;
 
+const currentScreen = document.querySelector(".currentScreen");
+const previousScreen = document.querySelector(".previousScreen");
 const numBtn = document.querySelectorAll(".btn_num");
-const currentDisplay = document.querySelector(".currentScreen");
-const deleteBtn = document.querySelector(".btn_erase");
-const operatorBtn = document.querySelectorAll(".btn_op");
-const previousDisplay = document.querySelector(".previousScreen");
+const eraseBtn = document.querySelector(".btn_erase");
+const OpBtns = document.querySelectorAll(".btn_op")
 const equalBtn = document.querySelector("#btn_equal");
 const clearBtn = document.querySelector(".btn_clear");
 const pointBtn = document.querySelector(".btn_point");
 
+eraseBtn.addEventListener('click',erase);
+equalBtn.addEventListener('click',evaluate);
+clearBtn.addEventListener('click',clearScreen);
+pointBtn.addEventListener('click',appendPoint)
 
-deleteBtn.addEventListener('click', deleteNumber);
-equalBtn.addEventListener('click', evaluate);
-clearBtn.addEventListener('click', clearScreen);
-pointBtn.addEventListener('click', appendPoint);
+numBtn.forEach((btn)=>{
+  btn.addEventListener('click',()=>appendNum(btn.value));
+});
 
-numBtn.forEach((btn)=>
-    btn.addEventListener('click',()=>appendNumber(btn.value))
-);
-operatorBtn.forEach((btn)=>
-    btn.addEventListener('click',()=> setOperation(btn.textContent))
-);
+OpBtns.forEach((btn)=>{
+  btn.addEventListener('click',()=>SelectOp(btn.textContent));
+})
 
-function appendNumber(value){
-    if(currentDisplay.textContent === "0" || shouldResetScreen )resetScreen();
-    currentDisplay.textContent += value; 
+function appendNum(number){
+  if(currentScreen.textContent === "0" || resetScreen )reset();
+  currentScreen.textContent += number;
+}
+function reset(){
+  currentScreen.textContent = '';
+  resetScreen = false;
 }
 
-function resetScreen(){
-    currentDisplay.textContent = "";
-    shouldResetScreen = false;
+function appendPoint(){
+  if( resetScreen)return;
+  if(currentScreen.textContent ==='')
+    currentScreen.textContent = "0";
+  if(currentScreen.textContent.includes('.'))return;
+  currentScreen.textContent += ".";
 }
 
-function deleteNumber(){
-    currentDisplay.textContent = currentDisplay.textContent.toString().slice(0,-1);
+function erase(){
+  currentScreen.textContent = currentScreen.textContent.
+  toString()
+  .slice(0,-1);
 }
 
-function setOperation(operator){
-    if(currentOperation !== null)evaluate();
-    firstOparend = currentDisplay.textContent;
-    currentOperation = operator;
-    previousDisplay.textContent =`${firstOparend}${currentOperation}`;
-    shouldResetScreen = true;
-}
-function appendPoint() {
-  if (shouldResetScreen) resetScreen()
-  if (currentDisplay.textContent === '')
-    currentOperation.textContent = '0'
-  if (currentDisplay.textContent.includes('.')) return
-  currentDisplay.textContent += '.'
+function SelectOp(operator){
+  if(Operation !== null)evaluate();
+  firstOperand = currentScreen.textContent;
+  Operation = operator;
+  previousScreen.textContent = `${firstOperand}${Operation}`;
+  reset(); 
 }
 
-
-function evaluate() {
-    if (currentOperation === null || shouldResetScreen) return;
-    if (currentOperation === '/' && currentDisplay.textContent === '0') {
-      alert("You can't divide by 0!")
-      return
-    }
-    secondOparend = currentDisplay.textContent;
-    currentDisplay.textContent = roundResult(operate(currentOperation, firstOparend, secondOparend));
-    previousDisplay.textContent = `${firstOparend} ${currentOperation} ${secondOparend} =`;
-    currentOperation = null;
-    
+function evaluate(){
+  if(Operation === null || resetScreen) return;
+  if(Operation === "/" && currentScreen.textContent === "0"){
+    alert("Cannot divde by 0");
+    return;
   }
-  function roundResult(number) {
-    return Math.round(number * 1000) / 1000
-  }
+  secondOPerand = currentScreen.textContent;
+  currentScreen.textContent = roundedResult(operate(Operation,firstOperand,secondOPerand));
+  previousScreen.textContent = `${firstOperand}${Operation}${secondOPerand}`;
+  Operation = null;
+}
 
-  function clearScreen(){
-    currentDisplay.textContent = "0";
-    previousDisplay.textContent = "";
-    firstOparend = "";
-    secondOparend = "";
-    currentOperation = null; 
-  }
+function roundedResult(result){
+  return Math.floor(result*1000)/1000;
+}
+
+function clearScreen(){
+  currentScreen.textContent = '0';
+  previousScreen.textContent = '';
+  firstOperand = '';
+  secondOPerand = '';
+  Operation = null;
+}
 
 function add(a,b){
-    return a+b;
+  return a+b;
 }
 function substract(a,b){
-    return a-b;
+  return a-b;
 }
 function multiply(a,b){
-    return a*b;
+  return a*b;
 }
 function divide(a,b){
-    return a/b;
+  return a/b;
 }
 
-function operate(operator, a, b) {
-    a = Number(a)
-    b = Number(b)
-    switch (operator) {
-      case '+':
-        return add(a, b)
-      case '-':
-        return substract(a, b)
-      case '*':
-        return multiply(a, b)
-      case '/':
-        if (b === 0) return null
-        else return divide(a, b)
-      default:
-        return null
-    }
+function operate(Operator,a,b){
+  if(Operator === "+"){
+    return add(a,b);
+  }
+  else if(Operator === "-"){
+    return substract(a,b);
+  }
+  else if(Operator === "*"){
+    return multiply(a,b);
+  }
+  else{
+    return divide(a,b);
+  }
 }
