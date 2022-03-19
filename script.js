@@ -94,6 +94,8 @@ function divide(a,b){
 }
 
 function operate(Operator,a,b){
+  a = Number(a);
+  b = Number(b);
   if(Operator === "+"){
     return add(a,b);
   }
